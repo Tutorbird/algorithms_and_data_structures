@@ -22,50 +22,31 @@ public class FibonacciHuge {
           is approximately O(n) since we are only dependent on one
           iteration based on the nth number given.
         */
-        long period = getPeriodLength(n, m);
+        long period = getPeriodLength(m);
         long previous = 0;
         long current  = 1;
 
-        if (period == 0) {
-            for (int i = 0; i < n - 1; ++i) {
-                long tmp_previous = previous;
-                previous = current;
-                current = tmp_previous + current;
-            }
-        } else {
-            long iter_count = n % period;
-            current = getFibonacciHugeNaive(iter_count, m);
-        }
+        System.out.println("Period length:" + period);
 
-        // // for (int i = 0; i < period; ++i) {
-        // //     long tmp_previous = previous;
-        // //     previous = current;
-        // //     current = (tmp_previous % m) + (current % m);
-        // // }
-
-        return current % m;
+        return period;
     }
 
-    private static long getPeriodLength(long n, long m) {
+    private static long getPeriodLength(long m) {
 
         long[] result = new long[MAX_ARR_LENGTH];
         result[0] = result[1] = 1;
+        long i = 0;
 
-        for (long i = 0; i < n; ++i) {
+        while (!(result[1] % m == 0 && result[2] % m == 1 && i > 2)) {
+
             result[0] = result[1];
             result[1] = result[2];
             result[2] = result[0] + result[1];
-
-            if (result[1] % m == 0 && result[2] % m == 1 && i > 2)
-                return i;
+            i++;
         }
 
-        /*
-            If the return value is 0, it follows that the nth term is 
-            before the beginning of a period.
-        */
-
-        return 0;
+        //Subtract one since i is incremented before it breaks out
+        return (i - 1);
 
     }
     
