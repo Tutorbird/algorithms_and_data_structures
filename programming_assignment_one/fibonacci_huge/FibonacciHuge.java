@@ -1,33 +1,39 @@
 import java.util.*;
 
 public class FibonacciHuge {
+    private static final int MAX_ARR_LENGTH = 3;
     private static long getFibonacciHugeNaive(long n, long m) {
 
         if (n <= 1)
           return n;
 
         /*
-          We force the array to only have a size of three since we
-          only need the previous two values to calculate the nth
-          Fibonacci number. Memory-wise that means we only have
-          three long values or, according to the Java documentation,
-          20 bytes for an Array                 +
-          (4 * 3) for the size of the dimension +
-          (4 * 3) for the size of the data type
-          _______________________________________
-          44 bytes of memory!
-
-          If my calculations are correct, the avg runtime for this algorithm
-          is approximately O(n) since we are only dependent on one
-          iteration based on the nth number given.
+         we get the remainder, or count, by using the formula given
+         in the assignment. n = (x * period) + remainder. As such...
+         remainder = n % period
         */
+
         long period = getPeriodLength(m);
-        long previous = 0;
-        long current  = 1;
         long count = (n % period);
 
-        return count;
+        return getFibonacciModM(count, m);
         
+    }
+
+    private static long getFibonacciModM(long n, long m) {
+        if (n <= 1)
+            return n;
+
+        long previous = 0;
+        long current  = 1;
+
+        for (int i = 0; i < n - 1; ++i) {
+            long tmp_previous = previous;
+            previous = current;
+            current = (tmp_previous % m) + (current % m);
+        }
+
+        return current % m;
     }
 
     private static long getPeriodLength(long m) {
@@ -36,7 +42,10 @@ public class FibonacciHuge {
       long previous_one = 1;
       long current = 1;
       long i = 0;
-
+      /*
+        This is based on the principal given in the assignment that each
+        recurrence starts with a 0 and 1
+      */
       do {
           current = (previous_one + previous_two) % m;
           previous_two = previous_one;
