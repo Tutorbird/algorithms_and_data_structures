@@ -11,7 +11,7 @@ public class FibonacciHuge {
         for (long i = 0; i < n - 1; ++i) {
             long tmp_previous = previous;
             previous = current;
-            current = tmp_previous + current;
+            current = (tmp_previous % m) + (current % m);
         }
 
         return current % m;
