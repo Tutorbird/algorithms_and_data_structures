@@ -26,9 +26,15 @@ public class FibonacciHuge {
         long previous = 0;
         long current  = 1;
 
-        System.out.println("Period length:" + period);
+        long iter_count = n % period;
 
-        return period;
+        for (long i = 0; i < iter_count - 1; ++i) {
+            long tmp_previous = previous;
+            previous = current;
+            current = tmp_previous + current;
+        }
+
+        return (long) current % m;
     }
 
     private static long getPeriodLength(long m) {
