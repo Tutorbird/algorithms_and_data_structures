@@ -7,16 +7,14 @@ public class FibonacciSumLastDigit {
 
         long previous = 0;
         long current  = 1;
-        long sum      = 1;
 
-        for (long i = 0; i < n - 1; ++i) {
+        for (long i = 0; i < n + 1; ++i) {
             long tmp_previous = previous;
             previous = current;
             current = tmp_previous + current;
-            sum += current;
         }
 
-        return sum % 10;
+        return (current - 1) % 10;
     }
     
     public static void main(String[] args) {
