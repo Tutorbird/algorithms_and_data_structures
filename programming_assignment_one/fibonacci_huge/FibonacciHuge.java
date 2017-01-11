@@ -22,6 +22,11 @@ public class FibonacciHuge {
           iteration based on the nth number given.
         */
         long period = getPeriodLength(m);
+        long previous = 0;
+        long current  = 1;
+        long count = (n % period);
+
+        return count;
         
     }
 
