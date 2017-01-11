@@ -22,8 +22,29 @@ public class FibonacciHuge {
           is approximately O(n) since we are only dependent on one
           iteration based on the nth number given.
         */
+        long period = getPeriodLength(n, m);
+        long previous = 0;
+        long current  = 1;
 
-        return result[2] % m;
+        System.out.println("Period Length: " + period);
+
+        return period;
+
+        // if (period == 0) {
+        //     for (int i = 0; i < n - 1; ++i) {
+        //         long tmp_previous = previous;
+        //         previous = current;
+        //         current = tmp_previous + current;
+        //     }
+        // }
+
+        // // for (int i = 0; i < period; ++i) {
+        // //     long tmp_previous = previous;
+        // //     previous = current;
+        // //     current = (tmp_previous % m) + (current % m);
+        // // }
+
+        // return current % m;
     }
 
     private static long getPeriodLength(long n, long m) {
@@ -39,6 +60,8 @@ public class FibonacciHuge {
             if (result[1] % m == 0 && result[2] % m == 1 && i > 2)
                 return i;
         }
+
+        return 0;
 
     }
     
