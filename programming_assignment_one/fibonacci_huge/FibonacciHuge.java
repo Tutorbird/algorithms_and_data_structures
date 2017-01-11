@@ -26,14 +26,15 @@ public class FibonacciHuge {
         long previous = 0;
         long current  = 1;
 
-        System.out.println("Period Length: " + period);
-
         if (period == 0) {
             for (int i = 0; i < n - 1; ++i) {
                 long tmp_previous = previous;
                 previous = current;
                 current = tmp_previous + current;
             }
+        } else {
+            long iter_count = n % period;
+            current = getFibonacciHugeNaive(iter_count, m);
         }
 
         // // for (int i = 0; i < period; ++i) {
