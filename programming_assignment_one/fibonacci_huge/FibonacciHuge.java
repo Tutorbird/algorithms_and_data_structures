@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class FibonacciHuge {
-    private static final int MAX_ARR_LENGTH = 3;
     private static long getFibonacciHugeNaive(long n, long m) {
 
         if (n <= 1)
@@ -23,36 +22,24 @@ public class FibonacciHuge {
           iteration based on the nth number given.
         */
         long period = getPeriodLength(m);
-        long previous = 0;
-        long current  = 1;
-
-        long iter_count = n % period;
-
-        for (long i = 0; i < iter_count - 1; ++i) {
-            long tmp_previous = previous;
-            previous = current;
-            current = tmp_previous + current;
-        }
-
-        return (long) current % m;
+        
     }
 
     private static long getPeriodLength(long m) {
 
-        long[] result = new long[MAX_ARR_LENGTH];
-        result[0] = result[1] = 1;
-        long i = 0;
+      long previous_two = 0;
+      long previous_one = 1;
+      long current = 1;
+      long i = 0;
 
-        while (!(result[1] % m == 0 && result[2] % m == 1 && i > 2)) {
-
-            result[0] = result[1];
-            result[1] = result[2];
-            result[2] = result[0] + result[1];
-            i++;
-        }
-
-        //Subtract one since i is incremented before it breaks out
-        return (i - 1);
+      do {
+          current = (previous_one + previous_two) % m;
+          previous_two = previous_one;
+          previous_one = current;
+          ++i;
+      } while ( !(previous_two == 0 && previous_one == 1) );
+    
+      return i;
 
     }
     
