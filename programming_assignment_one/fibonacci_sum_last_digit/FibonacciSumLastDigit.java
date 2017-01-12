@@ -5,16 +5,12 @@ public class FibonacciSumLastDigit {
         if (n <= 1)
             return n;
 
-        long previous = 0;
-        long current  = 1;
+        double recurring = Math.sqrt(5);
+        double first_half = ((1 + recurring) / 2);
+        double second_half = ((1 - recurring) / 2);
+        double result = (1/recurring) * ( Math.pow(first_half, (n + 2)) - Math.pow(second_half, (n + 2)) );
 
-        for (long i = 0; i < n + 1; ++i) {
-            long tmp_previous = previous;
-            previous = current;
-            current = tmp_previous + current;
-        }
-
-        return (current - 1) % 10;
+        return result - 1;
     }
     
     public static void main(String[] args) {
