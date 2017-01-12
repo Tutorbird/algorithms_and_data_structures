@@ -19,6 +19,8 @@ public class FibonacciSumLastDigit {
         long period = getPeriodLength(m);
         long count = ( (n + 2) % period);
         long sum = getFibonacciModM(count, m) - 1;
+        if (sum == -1)
+            sum = 9;
 
         return sum;
         
