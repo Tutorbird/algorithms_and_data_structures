@@ -17,13 +17,14 @@ public class FibonacciPartialSum {
          value in order to get only the last digit.
         */
 
-        long m = 1000; 
+        long m = 10000; 
         long period = getPeriodLength(m);
         long upper = ( (n + 2) % period);
         long lower = ( (from + 1) % period);
         long sum_lower = getFibonacciModM(lower, m) - 1;
         long sum_upper = getFibonacciModM(upper, m) - 1;
         long sum = sum_upper - sum_lower;
+        
         if (sum == -1)
             sum = 9;
 
