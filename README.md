@@ -1,12 +1,18 @@
-# Coursera - Algorithms and Data Structures, 6-course specialization
+# Coursera - Algorithms and Data Structures
+### - by UC, San Diego and Higher School of Economics (NRU)
 
-Trying to fill in the knowledge gaps that arise from going through the traditional CS degree route. 
+Courses: 
 
-Started on January 9th
+ * Algorithm Toolbox
+ * Data Structures
+ * Algorithms on Graphs
+ * Algorithms on Strings
+ * Advanced Algorithms and Complexity
+ * Genome Assembly Programming 
+
+Start Date: Jan. 9, 2017
 
 Current Progress = Week 3/5 for Algorithm Toolbox
 
-This README is more or less to see how much I can learn in a short time. 
-
-Feel free to look at commits to take a look at the thought process behind some things.
+This repository is to try and fill in some knowledge gaps that come from a non-traditional CS background. Likewise, it's a way for me to get familiar with Java, which I used to dislike but it's growing on me. 
 
