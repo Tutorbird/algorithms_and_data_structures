@@ -3,6 +3,16 @@ import java.text.DecimalFormat;
 
 public class FractionalKnapsack {
     private static double getOptimalValue(int capacity, int[] values, int[] weights) {
+        /*
+         This is an ugly, naive, and greedy way to solve the fractional
+         knapsack problem. The value of profits is set to 0. It is O(n^2)
+         due to the fact that we got 2 arrays as data structures and
+         needed to find the best quotient. Once we find a min_value that
+         is the same as the weight in iteration we reset the value and 
+         weight to 0 and 1, respectively. 1 to override divide by 0
+         errors. FML
+        */
+
         double value = 0;
           
         for (int i = 0; i < values.length; i++) {
