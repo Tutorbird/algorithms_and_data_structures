@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class FractionalKnapsack {
     private static double getOptimalValue(int capacity, int[] values, int[] weights) {
@@ -10,6 +11,7 @@ public class FractionalKnapsack {
 
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
+        DecimalFormat dec = new DecimalFormat("#.0000");
         int n = scanner.nextInt();
         int capacity = scanner.nextInt();
         int[] values = new int[n];
@@ -18,6 +20,6 @@ public class FractionalKnapsack {
             values[i] = scanner.nextInt();
             weights[i] = scanner.nextInt();
         }
-        System.out.println(getOptimalValue(capacity, values, weights));
+        System.out.println(dec.format(getOptimalValue(capacity, values, weights)));
     }
 } 
