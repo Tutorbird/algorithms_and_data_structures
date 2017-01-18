@@ -21,13 +21,23 @@ public class CoveringSegments {
         return points;
     }
 
-    private static class Segment {
+    private static class Segment implements Comparable<Segment>{
         int start, end;
 
         Segment(int start, int end) {
             this.start = start;
             this.end = end;
         }
+
+        public int compareTo(Segment other) {
+
+            int other_end = ((Segment) other).end;
+
+            //ascending order
+            return this.end - other_end;
+
+        }
+
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -39,6 +49,7 @@ public class CoveringSegments {
             end = scanner.nextInt();
             segments[i] = new Segment(start, end);
         }
+        Arrays.sort(segments);
         int[] points = optimalPoints(segments);
         int result = points[points.length - 1];
         System.out.println(result);
