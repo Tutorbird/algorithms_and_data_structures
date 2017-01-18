@@ -10,7 +10,7 @@ public class CoveringSegments {
         points[0] = segments[0].end;
 
         for (int i = 1; i < segments.length; i++) {
-            if (!(segments[i].start <= points[count - 1] && points[count - 1] <= segments[i].end)) {
+            if ((segments[i].start > points[count - 1] || points[count - 1] > segments[i].end)) {
                 points[count] = segments[i].end;
                 count++;
             }
