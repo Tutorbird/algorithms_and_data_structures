@@ -4,11 +4,20 @@ public class CoveringSegments {
 
     private static int[] optimalPoints(Segment[] segments) {
         //write your code here
-        int[] points = new int[2 * segments.length];
-        for (int i = 0; i < segments.length; i++) {
-            points[2 * i] = segments[i].start;
-            points[2 * i + 1] = segments[i].end;
+        int[] points = new int[segments.length + 1];
+
+        int count = 1;
+        points[0] = segments[0].end;
+
+        for (int i = 1; i < segments.length; i++) {
+            if (!(segments[i].start <= points[count - 1] && points[count - 1] <= segments[i].end)) {
+                points[count] = segments[i].end;
+                count++;
+            }
+
         }
+        points[points.length - 1] = count;
+
         return points;
     }
 
@@ -31,9 +40,10 @@ public class CoveringSegments {
             segments[i] = new Segment(start, end);
         }
         int[] points = optimalPoints(segments);
-        System.out.println(points.length);
-        for (int point : points) {
-            System.out.print(point + " ");
+        int result = points[points.length - 1];
+        System.out.println(result);
+        for (int i = 0; i < result; i++) {
+            System.out.print(points[i] + " ");
         }
     }
 }
