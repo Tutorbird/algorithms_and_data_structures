@@ -2,7 +2,7 @@ import java.util.*;
 
 public class LargestNumber {
     private static boolean isGreaterThanOrEqual(String a, String b) {
-        if (a.charAt(0) >= b.charAt(0) && a.length() <= b.length()) {
+        if (a.compareTo(b) > 0) {
           return true;
         }
 
@@ -15,7 +15,7 @@ public class LargestNumber {
 
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < a.length; j++) {
-                if (i != j && isGreaterThanOrEqual(a[i], a[j]))  {
+                if (i != j && isGreaterThanOrEqual(a[i] + a[j], a[j] + a[i]))  {
                     String temp = a[i];
                     a[i] = a[j];
                     a[j] = temp;
