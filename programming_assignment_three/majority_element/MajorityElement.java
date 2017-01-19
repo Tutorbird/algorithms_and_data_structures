@@ -3,18 +3,22 @@ import java.io.*;
 
 public class MajorityElement {
     private static int getMajorityElement(int[] a, int left, int right) {
-        double min = (a.length / 2.0);
+        int min = (a.length / 2);
         int base = a[0];
         int count = 1;
 
+        if (a.length == 1) {
+            return 1;
+        }
+
         for(int i = 1; i < a.length; i++) {
             if (base != a[i]) {
-                count = 0;
+                count = 1;
                 base = a[i];
             } else {
                 count++;
             }
-            if ((double) count > min) {
+            if (count > min) {
                 return 1;
             }
         }
