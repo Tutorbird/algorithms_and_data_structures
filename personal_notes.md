@@ -1,3 +1,5 @@
+-------------------------- Week 4 --------------------------
+
 Karatsuba's Algorithm for Faster DnC Polynomial Multiplication
 
  * a1b0+a0b1=(a0+a1)(b0+b1)−a0b0−a1
@@ -12,3 +14,7 @@ Master Theorem Shortcut:
  * If the amount of work is constant, O(n^d log(n))
  * If the amount of work is decreasing, O(n^d)
  * If the amount of work is increasing, O(n (log a / log b)
+
+
+MergeSort:
+ * Well that was fun. Dumb little mistakes like forgetting to update the index of the arrays while merging but overall easy to implement. Good DnC algorithms. 10/10 would implement again. 
