@@ -30,11 +30,14 @@ public class BinarySearch {
         } else if (a[m] > x) {
             index += binarySearch(Arrays.copyOfRange(a, 0, m), x) + 1;
         } else if (a[m] < x) {
-            int temp = binarySearch(Arrays.copyOfRange(a, (m + 1), a.length), x);
-            if (index == temp) {
-                return -1;
+            if (x <= a[a.length - 1] && (m + 1) < a.length) {
+                int temp = binarySearch(Arrays.copyOfRange(a, (m + 1), a.length), x);
+                if (temp == index) {
+                    return -1;
+                }
+                return index + m + 2;
             } else {
-                return index + temp + m + 2;
+                return -1;
             }
         }
 
@@ -42,25 +45,25 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
-        int[] data = {1,1,2,2,2,2,5,6};
+        // int[] data = {1,1,2,2,2,2,5,6};
 
-        for (int i = -1; i < 8; i++) {
-            System.out.println(binarySearch(data, i));
+        // for (int i = -1; i < 8; i++) {
+        //     System.out.println(binarySearch(data, i));
+        // }
+        FastScanner scanner = new FastScanner(System.in);
+        int n = scanner.nextInt();
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = scanner.nextInt();
         }
-        // FastScanner scanner = new FastScanner(System.in);
-        // int n = scanner.nextInt();
-        // int[] a = new int[n];
-        // for (int i = 0; i < n; i++) {
-        //     a[i] = scanner.nextInt();
-        // }
-        // int m = scanner.nextInt();
-        // int[] b = new int[m];
-        // for (int i = 0; i < m; i++) {
-        //   b[i] = scanner.nextInt();
-        // }
-        // for (int i = 0; i < m; i++) {
-
-        // }
+        int m = scanner.nextInt();
+        int[] b = new int[m];
+        for (int i = 0; i < m; i++) {
+          b[i] = scanner.nextInt();
+        }
+        for (int i = 0; i < m; i++) {
+            System.out.println(binarySearch(a, b[i]));
+        }
     }
     static class FastScanner {
         BufferedReader br;
