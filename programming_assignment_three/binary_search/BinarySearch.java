@@ -30,12 +30,12 @@ public class BinarySearch {
         } else if (a[m] > x) {
             index += binarySearch(Arrays.copyOfRange(a, 0, m), x) + 1;
         } else if (a[m] < x) {
-            if (x <= a[a.length - 1] && (m + 1) < a.length) {
+            if (x <= a[a.length - 1]) {
                 int temp = binarySearch(Arrays.copyOfRange(a, (m + 1), a.length), x);
-                if (temp == index) {
+                if (temp == -1) {
                     return -1;
                 }
-                return index + m + 2;
+                return index + temp + m + 2;
             } else {
                 return -1;
             }
@@ -62,7 +62,7 @@ public class BinarySearch {
           b[i] = scanner.nextInt();
         }
         for (int i = 0; i < m; i++) {
-            System.out.println(binarySearch(a, b[i]));
+            System.out.print(binarySearch(a, b[i]) + " ");
         }
     }
     static class FastScanner {
