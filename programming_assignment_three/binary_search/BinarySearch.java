@@ -4,8 +4,13 @@ import java.util.*;
 public class BinarySearch {
 
     static int binarySearch(int[] a, int x) {
-        int left = 0, right = a.length;
-        //write your code here
+        int m = (a.length) / 2;
+        
+        if (a.length == 1 && a[0] == x) {
+            return 0;
+        } else if (a[m] == x) {
+            return m;
+        }
 
         return -1;
     }
