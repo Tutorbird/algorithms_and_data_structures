@@ -10,38 +10,25 @@ public class BinarySearch {
          or right.
          */
 
-        int m = (a.length) / 2;
-        int index = -1;
-
-        if (a.length == 1) {
-            if (a[0] == x) {
-                return 0;
-            } else {
-                return -1;
-            }
-        } else if (a[m] == x) {
-            for (int i = m; i > -1; i--) {
-                if (a[i] != x) {
-                    return i + 1;
-                } else if (i == 0) {
-                    return 0;
+        int low = 0, high = a.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (x < a[mid]) {
+                high = mid - 1;
+            } else if (x > a[mid]) {
+                low = mid + 1;
+            } else if (x == a[mid]) {
+                for (int i = mid; i > -1; i--) {
+                    if (x != a[i]) {
+                        return i + 1;
+                    }
                 }
-            }
-        } else if (a[m] > x) {
-            index += binarySearch(Arrays.copyOfRange(a, 0, m), x) + 1;
-        } else if (a[m] < x) {
-            if (x <= a[a.length - 1]) {
-                int temp = binarySearch(Arrays.copyOfRange(a, (m + 1), a.length), x);
-                if (temp == -1) {
-                    return -1;
-                }
-                return index + temp + m + 2;
+                return mid;
             } else {
-                return -1;
+                return mid;
             }
         }
-
-        return index;
+        return -1;
     }
 
     public static void main(String[] args) {
