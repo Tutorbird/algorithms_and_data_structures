@@ -11,21 +11,36 @@ public class BinarySearch {
          */
 
         int m = (a.length) / 2;
+        int index = -1;
 
-        if (a.length == 1 && a[0] == x) {
-            return 0;
+        if (a.length == 1) {
+            if (a[0] == x) {
+                return 0;
+            } else {
+                return -1;
+            }
         } else if (a[m] == x) {
             return m;
+        } else if (a[m] > x) {
+            index += binarySearch(Arrays.copyOfRange(a, 0, m), x) + 1;
+        } else if (a[m] < x) {
+            int temp = binarySearch(Arrays.copyOfRange(a, (m + 1), a.length), x);
+            if (index == temp) {
+                return -1;
+            } else {
+                return index + temp + m + 2;
+            }
         }
 
-        return -1;
+        return index;
     }
 
     public static void main(String[] args) {
-        int[] data = {0,1,2,3};
+        int[] data = {0,1,2,3,4,5,6};
 
-        System.out.println(binarySearch(data, 1));
-
+        for (int i = -1; i < 8; i++) {
+            System.out.println(binarySearch(data, i));
+        }
         // FastScanner scanner = new FastScanner(System.in);
         // int n = scanner.nextInt();
         // int[] a = new int[n];
