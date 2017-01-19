@@ -20,7 +20,13 @@ public class BinarySearch {
                 return -1;
             }
         } else if (a[m] == x) {
-            return m;
+            for (int i = m; i > -1; i--) {
+                if (a[i] != x) {
+                    return i + 1;
+                } else if (i == 0) {
+                    return 0;
+                }
+            }
         } else if (a[m] > x) {
             index += binarySearch(Arrays.copyOfRange(a, 0, m), x) + 1;
         } else if (a[m] < x) {
@@ -36,7 +42,7 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
-        int[] data = {0,1,2,3,4,5,6};
+        int[] data = {1,1,2,2,2,2,5,6};
 
         for (int i = -1; i < 8; i++) {
             System.out.println(binarySearch(data, i));
