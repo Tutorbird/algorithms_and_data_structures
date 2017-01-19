@@ -22,6 +22,7 @@ public class BinarySearch {
                     if (x != a[i]) {
                         return i + 1;
                     }
+                    mid = i;
                 }
                 return mid;
             } else {
