@@ -3,13 +3,22 @@ import java.io.*;
 
 public class MajorityElement {
     private static int getMajorityElement(int[] a, int left, int right) {
-        if (left == right) {
-            return -1;
+        double min = (a.length / 2.0);
+        int base = a[0];
+        int count = 1;
+
+        for(int i = 1; i < a.length; i++) {
+            if (base != a[i]) {
+                count = 0;
+                base = a[i];
+            } else {
+                count++;
+            }
+            if ((double) count > min) {
+                return 1;
+            }
         }
-        if (left + 1 == right) {
-            return a[left];
-        }
-        //write your code here
+
         return -1;
     }
 
@@ -20,6 +29,9 @@ public class MajorityElement {
         for (int i = 0; i < n; i++) {
             a[i] = scanner.nextInt();
         }
+
+        Arrays.sort(a);
+
         if (getMajorityElement(a, 0, a.length) != -1) {
             System.out.println(1);
         } else {
