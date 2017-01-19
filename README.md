@@ -12,7 +12,7 @@ Courses:
 
 Start Date: Jan. 9, 2017
 
-Current Progress = Week 3/5 for Algorithm Toolbox
+Current Progress = Week 4/5 for Algorithm Toolbox
 
 This repository is to try and fill in some knowledge gaps that come from a non-traditional CS background. Likewise, it's a way for me to get familiar with Java, which I used to dislike but it's growing on me. 
 
