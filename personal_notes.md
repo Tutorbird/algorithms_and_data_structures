@@ -18,3 +18,5 @@ Master Theorem Shortcut:
 
 MergeSort:
  * Well that was fun. Dumb little mistakes like forgetting to update the index of the arrays while merging but overall easy to implement. Good DnC algorithms. 10/10 would implement again. 
+
+ Apparently it is the most asymptotically optimal of the comparison-based sorting algorithms. O(n * log(n))
