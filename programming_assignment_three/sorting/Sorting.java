@@ -5,12 +5,26 @@ public class Sorting {
     private static Random random = new Random();
 
     private static int[] partition3(int[] a, int l, int r) {
-      //write your code here
+      /*
+        Very similar to the the dual partition method, but
+        we check if it's 
+       */
+      int count = 0, lower = 0;
+      int[] m = new int [2];
 
+        for (int i = l + 1; i <= r; i++) {
+            if (a[i] == x) {
+                count++;
+                if (count + l != i) {
+                    int t = a[i];
+                    a[i] = a[l + count - 1];
+                    a[l + count - 1] = a[l + count + same];
+                    a[l + count + same] = t;
+                }
+                    
+            }
+        }
 
-      int m1 = l;
-      int m2 = r;
-      int[] m = {m1, m2};
       return m;
     }
 
