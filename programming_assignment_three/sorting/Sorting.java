@@ -18,8 +18,8 @@ public class Sorting {
                 count++;
                 if (count != i) {
                     int t = a[i];
-                    a[i] = a[count - 1];
-                    a[count - 1] = a[count + lower];
+                    a[i] = a[count];
+                    a[count] = a[count + lower];
                     a[count + lower] = t;
                 }              
             } else if (a[i] < x) {
