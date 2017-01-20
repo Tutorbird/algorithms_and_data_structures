@@ -19,8 +19,9 @@ public class Sorting {
                 if (count != i) {
                     int t = a[i];
                     a[i] = a[count];
-                    a[count] = a[count + lower];
-                    a[count + lower] = t;
+                    t = a[count + lower];
+                    a[count + lower] = a[i];
+                    a[i] = t;
                 }              
             } else if (a[i] < x) {
                 lower++;
