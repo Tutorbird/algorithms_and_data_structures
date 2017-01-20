@@ -11,7 +11,7 @@ public class Sorting {
         */
         int x = a[l];
         int count = l, lower = 0;
-        int[] m;
+        int[] m = new int[2];
 
         for (int i = l + 1; i <= r; i++) {
             if (a[i] == x) {
@@ -32,7 +32,8 @@ public class Sorting {
             }
         }
 
-        int m = {count, lower};
+        m[0] = count;
+        m[1] = lower;
       return m;
     }
 
@@ -62,9 +63,9 @@ public class Sorting {
         a[l] = a[k];
         a[k] = t;
         //use partition3
-        int m = partition2(a, l, r);
-        randomizedQuickSort(a, l, m - 1);
-        randomizedQuickSort(a, m + 1, r);
+        int[] m = partition3(a, l, r);
+        randomizedQuickSort(a, m[0] + 1, m[0] + m[1]);
+        randomizedQuickSort(a, m[0] + m[1] + 1, r);
     }
 
     public static void main(String[] args) {
