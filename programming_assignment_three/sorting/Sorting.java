@@ -17,11 +17,10 @@ public class Sorting {
             if (a[i] == x) {
                 count++;
                 if (count != i) {
-                    int t = a[i];
-                    a[i] = a[count];
-                    t = a[count + lower];
-                    a[count + lower] = a[i];
-                    a[i] = t;
+                    int t = a[count];
+                    a[count] = a[i];
+                    a[i] = a[count + lower];
+                    a[count + lower] = t;
                 }              
             } else if (a[i] < x) {
                 lower++;
