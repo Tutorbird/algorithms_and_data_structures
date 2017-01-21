@@ -11,6 +11,7 @@ Applied Karatsuba on large integer multiplication:
  * Suppose we need to multiply numbers 13 and 24. The correct result is 312. To get this result, we first create polynomials a(x)=x+3 and b(x)=2x+4 corresponding to numbers 13 and 24 respectively. We then use Karatsuba's algorithm to multiply those polynomials and get polynomial c(x)=2x2+10x+12. To get the answer, we need to compute c(10)=2×102+10×10+12. You see that some of the coefficients of polynomial c are not digits, because they are bigger than 9. To fix that, for each such coefficient from right to left we subtract 10 from it and add 1 to the previous coefficient: c(10)=2×102+10×10+12=2×102+11×10+2=3×102+1×10+2=312
 
 Master Theorem Shortcut:
+
  * If the amount of work is constant, O(n^d log(n))
  * If the amount of work is decreasing, O(n^d)
  * If the amount of work is increasing, O(n (log a / log b)
