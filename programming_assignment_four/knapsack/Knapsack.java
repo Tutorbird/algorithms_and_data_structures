@@ -6,10 +6,8 @@ public class Knapsack {
         
         for (int i = w.length - 1; i >= 0; i--) {
           int result = 0;  
-          System.out.println("Starting again...");
           for (int j = i; j >= 0; j--) {
             if (result + w[j] <= W) {
-              System.out.println("Storing:" + w[j]);
               result += w[j];
             }
           }
