@@ -31,6 +31,8 @@ public class Knapsack {
         for (int i = 0; i < n; i++) {
             w[i] = scanner.nextInt();
         }
+
+        Arrays.sort(w);
         System.out.println(optimalWeight(W, w));
     }
 }
