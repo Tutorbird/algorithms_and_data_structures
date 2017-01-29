@@ -41,10 +41,20 @@ public class tree_height {
 			for(int i = 0; i < parent.length; i++) {
 				if (parent[i] != -1) {
 					int height = 2;
-					int temp = arr[i];
+					int temp = parent[i];
 					while(parent[temp] != -1) {
-						if(height)
+						if(heights[temp] != 0) {
+							height += heights[temp] - 1;
+							break;
+						} else {
+							temp = parent[temp];
+							height++;
+						}
 					}
+
+					System.out.println(Arrays.toString(heights));
+					heights[i] = height;
+					maxHeight = Math.max(maxHeight, height);
 
 				}
 			}
