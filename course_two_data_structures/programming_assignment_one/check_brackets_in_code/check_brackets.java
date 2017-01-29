@@ -18,11 +18,12 @@ class check_brackets {
             } else if (next == ')' || next == ']' || next == '}') {
                 if (opening_brackets_stack.empty()) {
                     System.out.println(position + 1);
+                    System.exit(0);
                 } else {
-                    System.out.println("Entering here");
                     Bracket temp = opening_brackets_stack.pop();
                     if (!temp.Match(next)) {
-                        System.out.println(position);
+                        System.out.println(position + 1);
+                        System.exit(0);
                     }
                 }
 
