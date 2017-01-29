@@ -4,22 +4,22 @@ import java.lang.Math;
 
 public class tree_height {
     class FastScanner {
-			StringTokenizer tok = new StringTokenizer("");
-			BufferedReader in;
+		StringTokenizer tok = new StringTokenizer("");
+		BufferedReader in;
 
-			FastScanner() {
-				in = new BufferedReader(new InputStreamReader(System.in));
-			}
-
-			String next() throws IOException {
-				while (!tok.hasMoreElements())
-					tok = new StringTokenizer(in.readLine());
-				return tok.nextToken();
-			}
-			int nextInt() throws IOException {
-				return Integer.parseInt(next());
-			}
+		FastScanner() {
+			in = new BufferedReader(new InputStreamReader(System.in));
 		}
+
+		String next() throws IOException {
+			while (!tok.hasMoreElements())
+				tok = new StringTokenizer(in.readLine());
+			return tok.nextToken();
+		}
+		int nextInt() throws IOException {
+			return Integer.parseInt(next());
+		}
+	}
 
 	public class TreeHeight {
 		int n;
@@ -35,17 +35,20 @@ public class tree_height {
 		}
 
 		int computeHeight() {
-			Array.sort(parent);
-			int maxHeight = 1;
-			for (int i = 1; i < n - 1; i++) {
-				if (i == 1) {
-					int checker = parent[i];
-					maxHeight++;
-				} else if (parent[i] != parent[i + 1]) {
-					checker = parent[i + 1];
-					maxHeight++;
+      int[] heights = new int[parent.length];
+			int maxHeight = 0;
+			
+			for(int i = 0; i < parent.length; i++) {
+				if (parent[i] != -1) {
+					int height = 2;
+					int temp = arr[i];
+					while(parent[temp] != -1) {
+						if(height)
+					}
+
 				}
 			}
+
 			return maxHeight;
 		}
 	}
@@ -60,7 +63,6 @@ public class tree_height {
                     }
                 }, "1", 1 << 26).start();
 	}
-
 	public void run() throws IOException {
 		TreeHeight tree = new TreeHeight();
 		tree.read();
