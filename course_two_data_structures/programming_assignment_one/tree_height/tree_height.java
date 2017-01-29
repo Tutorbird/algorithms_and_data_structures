@@ -36,7 +36,7 @@ public class tree_height {
 
 		int computeHeight() {
       int[] heights = new int[parent.length];
-			int maxHeight = 0;
+			int maxHeight = 1;
 			
 			for(int i = 0; i < parent.length; i++) {
 				if (parent[i] != -1) {
@@ -51,8 +51,7 @@ public class tree_height {
 							height++;
 						}
 					}
-
-					System.out.println(Arrays.toString(heights));
+					
 					heights[i] = height;
 					maxHeight = Math.max(maxHeight, height);
 
