@@ -4,4 +4,5 @@
 
  - For example, in a dynamic array if the overhead cost is O(n), then by the aggregate method, the cost is basically O(n)/n or O(1)
  - In the physicist method, the cost would be c(t) + phi(hsub(i)) - phi(hsub(i - 1)), where c(t) is the true cost and phi is the potential function and the base case is 0. You sum that stuff together and you get phi(hsub(n)) + phi(hsub(0)) + the sum of the the true cost from 1 to n. 
+ - In the case of the adding in a dynamic array, that's essentially O(1) + (2 x (n - (n - 1))) or 3 without a resize. When resizing size and capacity are the same (sizesub(i - 1) = capacitysub(i - 1) = k), so it becomes: O(n) + 2 - k (2 simplified from 2sizesub(i) - capacitysub(i) = 2 (k + 1)  - 2K, and k simplified from 2sizesub(i - 1) - capacitysub(i - 1) = 2k - k = k) 
 
