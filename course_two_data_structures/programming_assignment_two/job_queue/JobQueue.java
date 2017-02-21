@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 class Thread {
     private int idx = 0;
     private long start = 0;
-    public my_thread(int idx, long start) {
+    public Thread(int idx, long start) {
 
         this.idx = idx;
         this.start = start;
@@ -51,7 +51,7 @@ public class JobQueue {
 
     private void assignJobs() {
 
-        Comparator<my_thread> Order = new Comparator<my_thread>() {
+        Comparator<Thread> Order = new Comparator<Thread>() {
 
 
             public int compare(Thread o1, Thread o2) {
@@ -73,13 +73,13 @@ public class JobQueue {
             }
         };
 
-        Queue<my_thread> priorityQueue = new PriorityQueue<my_thread>(numWorkers,Order);
+        Queue<Thread> priorityQueue = new PriorityQueue<Thread>(numWorkers,Order);
 
         assignedWorker = new int[jobs.length];
         start_time = new long[jobs.length];
 
         for(int i =0 ;i<numWorkers;i++)
-            priorityQueue.add(new my_thread(i,0));
+            priorityQueue.add(new Thread(i,0));
 
         for (int i = 0; i < jobs.length; i++) {
             int duration = jobs[i];
@@ -87,7 +87,7 @@ public class JobQueue {
             assignedWorker[i] = priorityQueue.peek().getIndex();
             start_time[i] = priorityQueue.peek().getStartTime();
             priorityQueue.poll();
-            priorityQueue.add(new my_thread(assignedWorker[i], start_time[i] + duration));
+            priorityQueue.add(new Thread(assignedWorker[i], start_time[i] + duration));
 
 
         }
