@@ -8,10 +8,9 @@ public class HashChains {
 
     private FastScanner in;
     private PrintWriter out;
-    // store all strings in one list
-    private List<String> elems;
     // for hash function
     private int bucketCount;
+    private ArrayList<String>[] buckets;
     private int prime = 1000000007;
     private int multiplier = 263;
 
@@ -44,22 +43,32 @@ public class HashChains {
     }
 
     private void processQuery(Query query) {
+        int h = query.s == null ? query.ind : hashFunc(query.s);
+        ArrayList bucket = buckets[h];
+        
         switch (query.type) {
             case "add":
-                if (!elems.contains(query.s))
-                    elems.add(0, query.s);
+                if (bucket == null) {
+                    bucket = new ArrayList();
+                    buckets[h] = bucket;
+                }
+                if (!bucket.contains(query.s)) {
+                    bucket.add(0, query.s);
+                }
                 break;
             case "del":
-                if (elems.contains(query.s))
-                    elems.remove(query.s);
+                if (bucket != null && bucket.contains(query.s)) {
+                    bucket.remove(query.s);
+                }
                 break;
             case "find":
-                writeSearchResult(elems.contains(query.s));
+                writeSearchResult(bucket != null && bucket.contains(query.s));
                 break;
             case "check":
-                for (String cur : elems)
-                    if (hashFunc(cur) == query.ind)
+                if (bucket != null) {
+                    for (Object cur : bucket)
                         out.print(cur + " ");
+                }
                 out.println();
                 // Uncomment the following if you want to play with the program interactively.
                 // out.flush();
@@ -70,10 +79,10 @@ public class HashChains {
     }
 
     public void processQueries() throws IOException {
-        elems = new ArrayList<>();
         in = new FastScanner();
         out = new PrintWriter(new BufferedOutputStream(System.out));
         bucketCount = in.nextInt();
+        buckets = new ArrayList[bucketCount];
         int queryCount = in.nextInt();
         for (int i = 0; i < queryCount; ++i) {
             processQuery(readQuery());
