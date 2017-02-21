@@ -1,12 +1,31 @@
 import java.io.*;
 import java.util.StringTokenizer;
 
+class Thread {
+    private int idx = 0;
+    private long start = 0;
+    public my_thread(int idx, long start) {
+
+        this.idx = idx;
+        this.start = start;
+    }
+    
+    int getIndex(){
+        return this.idx;
+    }
+    
+    long getStartTime(){
+        return this.start;
+    }
+
+}
+
 public class JobQueue {
     private int numWorkers;
     private int[] jobs;
 
     private int[] assignedWorker;
-    private long[] startTime;
+    private long[] start_time;
 
     private FastScanner in;
     private PrintWriter out;
@@ -26,25 +45,51 @@ public class JobQueue {
 
     private void writeResponse() {
         for (int i = 0; i < jobs.length; ++i) {
-            out.println(assignedWorker[i] + " " + startTime[i]);
+            out.println(assignedWorker[i] + " " + start_time[i]);
         }
     }
 
     private void assignJobs() {
-        // TODO: replace this code with a faster algorithm.
+
+        Comparator<my_thread> Order = new Comparator<my_thread>() {
+
+
+            public int compare(Thread o1, Thread o2) {
+
+                long o1_start = o1.getStartTime();
+                long o2_start = o2.getStartTime();
+                int o1_idx = o1.getIndex();
+                int o2_idx = o2.getIndex();
+
+                if(o1_start != o2_start){
+                    return (int)(o1_start - o2_start);
+                }
+
+                else{
+                    return o1_idx - o2_idx;
+                }
+
+
+            }
+        };
+
+        Queue<my_thread> priorityQueue = new PriorityQueue<my_thread>(numWorkers,Order);
+
         assignedWorker = new int[jobs.length];
-        startTime = new long[jobs.length];
-        long[] nextFreeTime = new long[numWorkers];
+        start_time = new long[jobs.length];
+
+        for(int i =0 ;i<numWorkers;i++)
+            priorityQueue.add(new my_thread(i,0));
+
         for (int i = 0; i < jobs.length; i++) {
             int duration = jobs[i];
-            int bestWorker = 0;
-            for (int j = 0; j < numWorkers; ++j) {
-                if (nextFreeTime[j] < nextFreeTime[bestWorker])
-                    bestWorker = j;
-            }
-            assignedWorker[i] = bestWorker;
-            startTime[i] = nextFreeTime[bestWorker];
-            nextFreeTime[bestWorker] += duration;
+
+            assignedWorker[i] = priorityQueue.peek().getIndex();
+            start_time[i] = priorityQueue.peek().getStartTime();
+            priorityQueue.poll();
+            priorityQueue.add(new my_thread(assignedWorker[i], start_time[i] + duration));
+
+
         }
     }
 

@@ -30,25 +30,50 @@ public class BuildHeap {
         }
     }
 
+    // private void generateSwaps() {
+    //   swaps = new ArrayList<Swap>();
+    //   // The following naive implementation just sorts 
+    //   // the given sequence using selection sort algorithm
+    //   // and saves the resulting sequence of swaps.
+    //   // This turns the given array into a heap, 
+    //   // but in the worst case gives a quadratic number of swaps.
+    //   //
+    //   // TODO: replace by a more efficient implementation
+    //   for (int i = 0; i < data.length; ++i) {
+    //     for (int j = i + 1; j < data.length; ++j) {
+    //       if (data[i] > data[j]) {
+    //         swaps.add(new Swap(i, j));
+    //         int tmp = data[i];
+    //         data[i] = data[j];
+    //         data[j] = tmp;
+    //       }
+    //     }
+    //   }
+    // }
+
     private void generateSwaps() {
-      swaps = new ArrayList<Swap>();
-      // The following naive implementation just sorts 
-      // the given sequence using selection sort algorithm
-      // and saves the resulting sequence of swaps.
-      // This turns the given array into a heap, 
-      // but in the worst case gives a quadratic number of swaps.
-      //
-      // TODO: replace by a more efficient implementation
-      for (int i = 0; i < data.length; ++i) {
-        for (int j = i + 1; j < data.length; ++j) {
-          if (data[i] > data[j]) {
+        swaps = new ArrayList<Swap>();
+        // Note 0-based index
+        for (int i = data.length / 2; i >= 0; i--) {
+            shift_down(i);
+        }
+    }
+
+    private void shift_down(int i) {
+        int n = data.length;
+        // While i has at least one left child
+        while (i * 2 + 1 < n) {
+            int j = i * 2 + 1;  // left child
+            // Decide if right child exists and the smaller child
+            j = (j + 1 < n && data[j + 1] < data[j]) ? j + 1 : j;
+            // BZ: no swap if i == smallest child?
+            if (data[i] <= data[j]) return;
             swaps.add(new Swap(i, j));
             int tmp = data[i];
             data[i] = data[j];
             data[j] = tmp;
-          }
+            i = j;  // Forward i to its smaller child
         }
-      }
     }
 
     public void solve() throws IOException {
